@@ -1,0 +1,32 @@
+From: TWRP-PJA110 <noreply@localhost>
+Subject: [PATCH] libtar: use Android 14 unstable AIDL NDK names
+
+The Android 14 build generates unstable AIDL backends as `-ndk`.  TWRP's
+libtar still requests the pre-Android-14 `-ndk_platform` aliases, which are
+not emitted by the minimal 14.1 manifest.
+
+---
+ libtar/Android.mk | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/libtar/Android.mk b/libtar/Android.mk
+index 3dd3060..beef001 100644
+--- a/libtar/Android.mk
++++ b/libtar/Android.mk
+@@ -22,10 +22,10 @@ ifeq ($(TW_INCLUDE_CRYPTO_FBE), true)
+         android.hardware.keymaster@4.0 \
+         android.hardware.keymaster@4.1 \
+         android.hardware.weaver@1.0 \
+-        android.security.apc-ndk_platform \
+-        android.system.keystore2-V1-ndk_platform \
+-        android.security.authorization-ndk_platform \
+-        android.security.maintenance-ndk_platform \
++        android.security.apc-ndk \
++        android.system.keystore2-V1-ndk \
++        android.security.authorization-ndk \
++        android.security.maintenance-ndk \
+         libselinux \
+         libbinder_ndk \
+         libext4_utils \
+-- 
+2.43.0

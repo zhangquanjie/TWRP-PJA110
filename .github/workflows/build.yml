@@ -44,6 +44,10 @@ jobs:
           mkdir -p "${{ runner.temp }}/twrp/device/oneplus/pja110"
           rsync -a --delete --exclude='.git/' --exclude='.github/' ./ "${{ runner.temp }}/twrp/device/oneplus/pja110/"
 
+      - name: Apply TWRP 14.1 compatibility patches
+        working-directory: ${{ runner.temp }}/twrp
+        run: git -C bootable/recovery apply device/oneplus/pja110/patches/*.patch
+
       - name: Build recovery image
         working-directory: ${{ runner.temp }}/twrp
         env:
