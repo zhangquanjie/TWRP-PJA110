@@ -42,6 +42,16 @@ TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
+# The minimal TWRP tree does not build full dynamic partition images, but
+# Android's board configuration validation still requires a filesystem type
+# for every TARGET_COPY_OUT_* partition declared above.
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_SYSTEM_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
+
 # AVB is enforced by the bootloader; use the stock image footer when testing
 # a repacked image, rather than inventing release keys here.
 BOARD_AVB_ENABLE := false
