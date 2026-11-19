@@ -12,7 +12,13 @@ PRODUCT_BUILD_RECOVERY_IMAGE := true
 
 PRODUCT_PACKAGES += \
     fastbootd \
-    android.hardware.fastboot-service.example_recovery
+    android.hardware.fastboot-service.example_recovery \
+    android.security.apc-ndk_platform \
+    android.security.authorization-ndk_platform \
+    android.security.maintenance-ndk_platform \
+    android.system.keystore2-V1-ndk_platform \
+    qcom_decrypt \
+    qcom_decrypt_fbe
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery.fstab:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/recovery.fstab \

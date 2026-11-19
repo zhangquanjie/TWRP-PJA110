@@ -1,9 +1,12 @@
 # The paired vendor_boot loads the PJA110 DRM and Synaptics dependency chain.
 # Expose useful diagnostics without attempting to load mismatched modules from
 # the recovery ramdisk.
+import /init.recovery.qcom_decrypt.rc
+
 on init
     setprop ro.recovery.device pja110
     setprop ro.recovery.vendor_boot.required 1
+    setprop prepdecrypt.loglevel 2
 
 on property:sys.boot_completed=1
     chmod 0666 /sys/class/backlight/panel0-backlight/brightness
