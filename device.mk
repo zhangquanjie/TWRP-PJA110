@@ -4,6 +4,12 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_SHIPPING_API_LEVEL := 33
 PRODUCT_TARGET_VNDK_VERSION := 34
 
+# The stock header-v4 recovery image intentionally has no kernel payload.
+# TARGET_NO_KERNEL therefore has to stay enabled, while this product override
+# explicitly asks the Android build system to create the dedicated recovery
+# ramdisk image anyway.
+PRODUCT_BUILD_RECOVERY_IMAGE := true
+
 PRODUCT_PACKAGES += \
     fastbootd \
     android.hardware.fastboot-service.example_recovery
