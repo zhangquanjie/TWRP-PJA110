@@ -46,7 +46,10 @@ jobs:
 
       - name: Apply TWRP 14.1 compatibility patches
         working-directory: ${{ runner.temp }}/twrp
-        run: git -C bootable/recovery apply device/oneplus/pja110/patches/*.patch
+        run: |
+          for patch in "$PWD"/device/oneplus/pja110/patches/*.patch; do
+            git -C bootable/recovery apply "$patch"
+          done
 
       - name: Build recovery image
         working-directory: ${{ runner.temp }}/twrp
